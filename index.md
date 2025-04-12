@@ -1,7 +1,10 @@
 ---
-layout: default
-title: Welcome
+layout: home
+title: "Welcome to WNL Gamers"
 ---
-# Welcome to WNL Gamers 👋
 
-This site is under construction, but you’re in the right place!
+<div class="hero">
+  <h1>WNL Gamers</h1>
+  <p>Your community hub for board games in Wootton, Bedford</p>
+  <a class="btn" href="/games.html">Browse Games</a>
+</div>
