@@ -1,3 +1,7 @@
 title: WNL Gamers
-description: Board games in Wootton
+description: Board games in Wootton, Bedford – your community hub for fun and connection.
 theme: minima
+author: WNL Gamers
+baseurl: "" # leave this empty for a project site
+url: "https://yourusername.github.io/wnl-gamers" 
+# You can override colours in your custom CSS below
