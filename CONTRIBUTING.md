@@ -4,7 +4,6 @@ We’re excited that you’re interested in contributing to the WNL Gamers websi
 
 ## Ways You Can Contribute
 
-- **Suggest or add new games** to the game list.
 - **Submit corrections or enhancements** to descriptions or formatting.
 - **Propose new features** or layout improvements.
 - **Help with styling** and accessibility.

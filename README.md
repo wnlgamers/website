@@ -106,7 +106,7 @@ bundle exec jekyll serve --config _config.yml,_config_dev.yml
 
 ## Contributing
 
-We welcome contributions! See our [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests and join the development process.
+We welcome contributions! See our [CONTRIBUTING](CONTRIBUTING.md) for details on how to submit pull requests and join the development process.
 
 ## License
 
