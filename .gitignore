@@ -1,5 +1,2 @@
 # Ignore Jekyll generated files
 _site/
-
-# Ignore CNAME file
-CNAME
