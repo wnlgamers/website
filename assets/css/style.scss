@@ -1,13 +1,14 @@
 ---
----
-
+--- 
 @import "{{ site.theme }}";
 
 /* Navigation Container: set a very dark grey background */
 .site-nav {
-  background-color: #222;  /* Very dark grey */
+  background-color: #222;
+  /* Very dark grey */
   padding: 10px;
-  border-bottom: 1px solid #444; /* Optional subtle border */
+  border-bottom: 1px solid #444;
+  /* Optional subtle border */
 }
 
 /* Navigation List Styling: left-align items with spacing */
@@ -16,8 +17,10 @@
   padding: 0;
   list-style: none;
   display: flex;
-  justify-content: flex-start; /* Align items to the left */
-  gap: 10px; /* Provide space between buttons */
+  justify-content: flex-start;
+  /* Align items to the left */
+  gap: 10px;
+  /* Provide space between buttons */
 }
 
 /* Navigation Item: no forced width so each button sizes naturally */
@@ -31,20 +34,98 @@
   display: inline-block;
   padding: 10px 15px;
   text-decoration: none;
-  color: #fff;               /* White text for good contrast on dark backgrounds */
-  background: transparent;   /* No background when not selected */
-  border: none;              /* No border */
+  color: #fff;
+  /* White text for good contrast on dark backgrounds */
+  background: transparent;
+  /* No background when not selected */
+  border: none;
+  /* No border */
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Hover State: for non-active buttons */
 .site-nav li a:hover {
-  background-color: #333;   /* Slightly lighter grey on hover */
+  background-color: #333;
+  /* Slightly lighter grey on hover */
 }
 
 /* Active Navigation Item: dark orange background with contrasting text */
 .site-nav li.active a {
-  background-color: #D35400; /* Dark orange background */
-  color: #fff;               /* White text for contrast */
+  background-color: #D35400;
+  /* Dark orange background */
+  color: #fff;
+  /* White text for contrast */
   font-weight: bold;
+}
+
+
+/* Geek LIst formatting */
+.geeklist-item {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 0;
+}
+
+.geeklist-item h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.geeklist-item h3 a {
+  color: #000;
+  /* Set game title links to black */
+  text-decoration: none;
+  /* Optional: remove underline if desired */
+}
+
+.geeklist-item h3 a:hover {
+  color: #333;
+  /* A slightly different color on hover, if you like */
+}
+
+.geeklist-description {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Container for each geeklist item */
+.geeklist-item {
+  overflow: auto;
+  /* Ensure proper float handling */
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+/* Thumbnail container: fixed size and floats left */
+.geeklist-thumbnail {
+  float: left;
+  width: 150px;
+  /* Adjust as needed */
+  height: 150px;
+  /* Adjust as needed */
+  margin-right: 1rem;
+  /* Space between the image and text */
+  overflow: hidden;
+}
+
+/* Image fills the thumbnail container */
+.geeklist-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info container: contains title and description */
+.geeklist-info {
+  overflow: hidden;
+  /* Clears the float */
+}
+
+/* Optional: additional styling for the title and description */
+.geeklist-info h3 {
+  margin-top: 0;
+}
+
+.geeklist-description {
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
