@@ -4,8 +4,7 @@ title: "Welcome to WNL Gamers"
 ---
 
 <div class="hero">
-  <h1>WNL Gamers</h1>
-  <p>Your community hub for board games in Wootton, Bedford</p>
-  <a class="btn" href="/games.html">Browse Games</a>
-  <a class="btn" href="/about.html">About Us</a>
+  <h1>Welcome to Wootton new Life Gamers</h1>
+  <p>We're a community board game club meeting at Wootton New Life Methodist Church once a month to play a selection of new and old board games. All are welcome to turn up and join in.</p>
+  <img src="./assets/flyer.png">
 </div>

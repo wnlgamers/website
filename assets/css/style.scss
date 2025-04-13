@@ -1,0 +1,50 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Navigation Container: set a very dark grey background */
+.site-nav {
+  background-color: #222;  /* Very dark grey */
+  padding: 10px;
+  border-bottom: 1px solid #444; /* Optional subtle border */
+}
+
+/* Navigation List Styling: left-align items with spacing */
+.site-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  gap: 10px; /* Provide space between buttons */
+}
+
+/* Navigation Item: no forced width so each button sizes naturally */
+.site-nav li {
+  margin: 0;
+  text-align: left;
+}
+
+/* Navigation Link (Button) styling */
+.site-nav li a {
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #fff;               /* White text for good contrast on dark backgrounds */
+  background: transparent;   /* No background when not selected */
+  border: none;              /* No border */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover State: for non-active buttons */
+.site-nav li a:hover {
+  background-color: #333;   /* Slightly lighter grey on hover */
+}
+
+/* Active Navigation Item: dark orange background with contrasting text */
+.site-nav li.active a {
+  background-color: #D35400; /* Dark orange background */
+  color: #fff;               /* White text for contrast */
+  font-weight: bold;
+}
