@@ -1,0 +1,30 @@
+name: Warn on sensitive files in PR
+
+on: [pull_request]
+
+jobs:
+  check-sensitive-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR contents
+        uses: actions/checkout@v3
+
+      - name: Look for sensitive files in the PR
+        run: |
+          FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
+          SENSITIVE_FILES=$(echo "$FILES" | grep -E '^CNAME$|^\.gitignore$|^\.github/workflows/')
+
+          if [ -n "$SENSITIVE_FILES" ]; then
+            echo "⚠️ Warning: This PR modifies one or more sensitive files:"
+            echo "$SENSITIVE_FILES" | while read line; do
+              echo " - $line"
+            done
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ **Warning: Sensitive files changed**" >> $GITHUB_STEP_SUMMARY
+            echo "$SENSITIVE_FILES" | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "These changes won't block the PR, but should be double-checked."
+          else
+            echo "✅ No sensitive files found in PR."
+          fi
