@@ -5,4 +5,4 @@ title: "Contact Us"
 
 ## Get in Touch
 
-Questions? Suggestions? Reach out to us at **info@wnlgamers.uk**.
+Questions? Suggestions? Reach out to us at [**info@wnlgamers.uk**](mailto:info@wnlgamers.uk).
