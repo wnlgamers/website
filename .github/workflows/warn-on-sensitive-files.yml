@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout PR contents
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ensure full history is available for SHA diffing
 
       - name: Look for sensitive files in the PR
         run: |
@@ -16,15 +18,14 @@ jobs:
           SENSITIVE_FILES=$(echo "$FILES" | grep -E '^CNAME$|^\.gitignore$|^\.github/workflows/')
 
           if [ -n "$SENSITIVE_FILES" ]; then
-            echo "⚠️ Warning: This PR modifies one or more sensitive files:"
-            echo "$SENSITIVE_FILES" | while read line; do
-              echo " - $line"
-            done
+            echo "⚠️ Sensitive files changed in PR:"
+            echo "$SENSITIVE_FILES"
+
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "⚠️ **Warning: Sensitive files changed**" >> $GITHUB_STEP_SUMMARY
+            echo "### ⚠️ Sensitive Files Changed" >> $GITHUB_STEP_SUMMARY
             echo "$SENSITIVE_FILES" | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "These changes won't block the PR, but should be double-checked."
+            echo "Please double-check these changes before merging." >> $GITHUB_STEP_SUMMARY
           else
             echo "✅ No sensitive files found in PR."
           fi
