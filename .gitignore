@@ -1,3 +1,2 @@
-# Ignore Jekyll generated files
-_site/
-
+# ignore _sties
+_sites
