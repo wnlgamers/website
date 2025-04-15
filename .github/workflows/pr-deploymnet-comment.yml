@@ -1,0 +1,36 @@
+name: Comment on PR with deployed URL
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  comment-on-deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on PR for staging or main
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const baseRef = context.payload.pull_request.base.ref;
+
+            let previewURL = null;
+
+            if (baseRef === 'staging') {
+              previewURL = 'https://staging.wnlgamers.uk';
+            } else if (baseRef === 'main') {
+              previewURL = 'https://wnlgamers.uk';
+            }
+
+            if (previewURL) {
+              github.rest.issues.createComment({
+                issue_number: context.payload.pull_request.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `✅ Your changes have been merged into \`${baseRef}\`.\n\n🔗 You can view the deployed site here:\n${previewURL}`
+              });
+            } else {
+              console.log("Merged into a non-deploy branch. No comment needed.");
+            }
