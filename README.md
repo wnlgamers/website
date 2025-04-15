@@ -108,6 +108,15 @@ bundle exec jekyll serve --config _config.yml,_config_dev.yml
 
 We welcome contributions! See our [CONTRIBUTING](CONTRIBUTING.md) for details on how to submit pull requests and join the development process.
 
+## Deployment
+
+This site is built using [Jekyll](https://jekyllrb.com) and deployed via [Cloudflare Pages](https://pages.cloudflare.com/).
+
+- **Live site:** [https://www.wnlgamers.uk](https://www.wnlgamers.uk)
+- **Staging preview (staging branch):** [https://staging.wnlgamers.uk](https://staging.wnlgamers.uk)
+
+Deployment is automated via commits to the `main` and `staging` branches.
+
 ## License
 
 This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.

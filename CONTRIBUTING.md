@@ -1,6 +1,13 @@
-# Contributing to the WNL Gamers Website
+# Contributing to WNL Gamers Website
 
-We welcome contributions to the WNL Gamers website! Whether you're fixing a typo, improving content, or adding new pages, your input helps make the site better for everyone.
+Thanks for your interest in contributing to the WNL Gamers website!
+
+This project is built with [Jekyll](https://jekyllrb.com) and deployed using [Cloudflare Pages](https://pages.cloudflare.com/). All updates are automatically built and deployed based on branch activity.
+
+## Workflow
+
+- **Production site**: Deployed from the `main` branch to [https://www.wnlgamers.uk](https://www.wnlgamers.uk)
+- **Staging site**: Deployed from the `staging` branch to [https://staging.wnlgamers.uk](https://staging.wnlgamers.uk)
 
 ---
 
