@@ -3,8 +3,17 @@ layout: default
 title: "Welcome to WNL Gamers"
 ---
 
-<div class="hero">
-  <h1>Welcome to Wootton New Life Gamers</h1>
-  <p>We're a community board game club meeting at Wootton New Life Methodist Church once a month to play a selection of new and old board games. All are welcome to turn up and join in. This test is for Noah.</p>
-  <img src="./assets/flyer.png">
-</div>
+## Welcome to Wootton New Life Gamers
+
+We're a friendly board game club that meets monthly at Wootton New Life Methodist Church in Bedford. Whether you're into classic favourites or curious about new games, everyone is welcome — just turn up and join in.
+
+We usually meet on the second Saturday evening of each month. See the flyer below for upcoming dates, times, and more information.
+
+📍 <a href="https://maps.app.goo.gl/3PZ1GrVyryVJnVL29" target="_blank"><strong>Wootton New Life Methodist Church</strong></a>  
+👥 Ages 11+ and adults  
+🎲 Free to attend – donations welcome  
+📧 <a href="mailto:bbgb1stWootton@gmail.com"><strong>bbgb1stWootton@gmail.com</strong></a>
+
+---
+
+![Family Game Night Flyer](./assets/flyer.png)

@@ -2,6 +2,22 @@
 --- 
 @import "{{ site.theme }}";
 
+.footer-links {
+  text-align: center;
+  color: #bbb;
+  font-size: 0.85rem;
+  padding: 1em 0;
+}
+
+.footer-links a {
+  color: #ff9933;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
 /* Navigation Container: set a very dark grey background */
 .site-nav {
   background-color: #222;
@@ -58,8 +74,18 @@
   font-weight: bold;
 }
 
-
 /* Geek LIst formatting */
+#games-display-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-top: 2px solid #ccc;
+}
+
+#games-display-title {
+  margin-bottom: 1rem;
+}
+
 .geeklist-item {
   border-bottom: 1px solid #ccc;
   padding: 1rem 0;
@@ -128,4 +154,47 @@
 .geeklist-description {
   font-size: 0.95rem;
   line-height: 1.4;
+}
+
+
+
+/* Table host styling */
+.host-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.host-card {
+  flex: 1 1 200px;
+  max-width: 250px;
+  text-align: center;
+  padding: 1rem;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.host-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 8px 14px;
+  background-color: #D35400;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #a94000;
 }
