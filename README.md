@@ -16,7 +16,7 @@ This site is designed to showcase our events, table hosts, and games we play —
 
 ## 🚀 How to Contribute
 
-See the [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed instructions.
+See the [CONTRIBUTING.md](./.github/CONTRIBUTING.md) file for detailed instructions.
 
 In short:
 - **Small change?** You can edit files right on GitHub (like updating your bio).
