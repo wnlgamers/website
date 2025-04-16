@@ -141,6 +141,7 @@
   justify-content: center;
   gap: 1rem;
   margin: 2rem 0;
+  padding: 0 1rem;
 }
 
 .host-button {
@@ -221,7 +222,7 @@ button:hover {
   background-color: #a94000;
 }
 
-/* --- Responsive adjustments for Geeklist --- */
+* --- Responsive adjustments for Geeklist --- */
 @media (max-width: 600px) {
   .geeklist-item {
     flex-direction: row; /* Keep side-by-side layout */
@@ -243,14 +244,38 @@ button:hover {
   }
 }
 
-/* --- Responsive adjustments for Host Buttons --- */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+  .host-selector {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* evenly space items */
+    gap: 0.5rem;
+    padding: 0;
+  }
+
+  .host-button {
+    flex: 0 1 22%;
+    max-width: 22%;
+    text-align: center;
+  }
+
   .host-button img {
     width: 60px;
     height: 60px;
   }
 
   .host-button span {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
+    word-break: break-word; /* prevent label wrapping issues */
   }
 }
+
+
+@media (max-width: 480px) {
+  .inner {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+
