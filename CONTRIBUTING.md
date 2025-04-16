@@ -12,27 +12,59 @@ Thanks for helping out! Here's how you can contribute:
 
 ---
 
-## 🛠️ Making Changes
+## ✏️ Quick Edit (for small text changes like bios)
 
-1. Make sure your local `main` branch is up to date:
+Want to make a small update to your page?
+
+1. Go to the file (e.g. `_data/hosts.yml`) on the GitHub site.
+2. Click the pencil ✏️ icon to edit.
+3. GitHub will help you create a new branch automatically.
+4. Click **"Propose changes"** and then **"Create pull request"**.
+5. That’s it! We’ll review and merge it.
+
+🔐 Note: You can’t edit `main` directly — this keeps things safe and reviewable!
+
+---
+
+## 👥 Who Can Contribute
+
+If you're a **member of the WNL Gamers GitHub organisation**, you can create branches and submit pull requests directly from this repository.
+
+If you're **not a member**, you can still contribute — just follow the steps below:
+
+### ✏️ For Non-Members: How to Contribute
+
+1. **Fork the repository**  
+   - Click the **"Fork"** button at the top right of the repo page.
+
+2. **Clone your forked copy locally** *(optional)*  
    ```bash
-   git checkout main
-   git pull origin main
+   git clone https://github.com/your-username/website.git
+   cd website
    ```
 
-2. Create a new branch for your changes:
+3. **Create a feature branch**
    ```bash
    git checkout -b feature/your-change-name
    ```
 
-3. Make your changes and commit them:
+4. **Make your changes and commit them**
    ```bash
    git add .
-   git commit -m "Descriptive message about your change"
-   git push -u origin feature/your-change-name
+   git commit -m "Your message"
+   git push origin feature/your-change-name
    ```
 
-4. Open a **pull request** into the `main` branch from your new branch.
+5. **Submit a pull request** from your fork to the `main` branch of the original repo.
+
+---
+
+### 🔐 Want to Become a Member?
+
+If you're a regular contributor and would like to join the WNL Gamers GitHub organisation:
+
+- Send an email to [info@wnlgamers.uk](mailto:info@wnlgamers.uk) with your GitHub username.
+- We'll review and invite you if appropriate.
 
 ---
 
