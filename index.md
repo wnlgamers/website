@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Welcome to WNL Gamers"
+permalink: /
 ---
 
 ## Welcome to Wootton New Life Gamers
@@ -12,7 +13,6 @@ We usually meet on the second Saturday evening of each month. See the flyer belo
 📍 <a href="https://maps.app.goo.gl/3PZ1GrVyryVJnVL29" target="_blank"><strong>Wootton New Life Methodist Church</strong></a>  
 👥 Ages 11+ and adults  
 🎲 Free to attend – donations welcome  
-📧 <a href="mailto:bbgb1stWootton@gmail.com"><strong>bbgb1stWootton@gmail.com</strong></a>
 
 ---
 

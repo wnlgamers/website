@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Meet the Table Hosts"
+permalink: /hosts
 ---
 
 ## Meet the Table Hosts
