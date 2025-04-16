@@ -1,8 +1,8 @@
 - name: Home
   url: /
 - name: Hosts & Games
-  url: /hosts.html
+  url: /hosts
 - name: About
-  url: /about.html
+  url: /about
 - name: Contact
-  url: /contact.html
+  url: /contact

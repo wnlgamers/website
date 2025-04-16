@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Our Games"
+permalink: /games
 ---
 
 ## Our Game List
