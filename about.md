@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "About WNL Gamers"
+permalink: /about
 ---
 
 ## About Us

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Welcome to WNL Gamers"
+permalink: /
 ---
 
 ## Welcome to Wootton New Life Gamers

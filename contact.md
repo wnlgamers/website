@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Contact Us"
+permalink: /contact
 ---
 
 ## Get in Touch
