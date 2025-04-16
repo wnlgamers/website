@@ -5,44 +5,56 @@ title: "Meet the Table Hosts"
 
 ## Meet the Table Hosts
 
-<div class="host-grid">
-
-  <div class="host-card">
-    <img class="host-image" src="/assets/images/hosts/allan.jpg" alt="Allan">
-    <h3>Allan</h3>
-    <p>Game bio goes here</p>
-    <button onclick="loadGamesIntoDisplay('Allan', 355830)">View Games</button>
-  </div>
-
-  <div class="host-card">
-    <img class="host-image" src="/assets/images/hosts/graham.jpg" alt="Graham">
-    <h3>Graham</h3>
-    <p>Game bio goes here</p>
-    <button onclick="loadGamesIntoDisplay('Graham', 355840)">View Games</button>
-  </div>
-
-  <div class="host-card">
-    <img class="host-image" src="/assets/images/hosts/rachel_dom.jpg" alt="Rachel & Dom">
-    <h3>Rachel & Dom</h3>
-    <p>Game bio goes here</p>
-    <button onclick="loadGamesIntoDisplay('Rachel & Dom', 355860)">View Games</button>
-  </div>
-
-  <div class="host-card">
-    <img class="host-image" src="/assets/images/hosts/phil.jpg" alt="Phil">
-    <h3>Phil</h3>
-    <p>Game bio goes here</p>
-    <button onclick="loadGamesIntoDisplay('Phil', 355850)">View Games</button>
-  </div>
-
-  <!-- Repeat for other hosts -->
+<section class="host-selector">
+  {% for host in site.data.hosts %}
+    <button 
+      class="host-button" 
+      data-host="{{ host.name }}" 
+      data-list="{{ host.geeklist_id }}"
+      data-bio="{{ host.bio | escape }}">
+      <img src="{{ host.image }}" alt="{{ host.name }}">
+      <span>{{ host.name }}</span>
+    </button>
+  {% endfor %}
+</section>
 
 <!-- Shared games list display section (initially hidden) -->
-<div id="games-display-container" style="display: none;">
+<div id="games-display-container" style="display:none;">
+  <div id="host-bio-container" style="margin-bottom: 1rem;">
+    <h3 id="host-bio-title" style="margin-bottom: 0.25rem;"></h3>
+    <div id="host-bio" class="host-bio"></div>
+  </div>
   <h2 id="games-display-title"></h2>
   <div id="games-display" class="games-list"></div>
 </div>
 
 <script src="{{ '/assets/gamelist.js' | relative_url }}"></script>
+<script>
+const buttons = document.querySelectorAll('.host-button');
+const gamesContainer = document.getElementById('games-display-container');
+const titleContainer = document.getElementById('games-display-title');
+const gamesDisplay = document.getElementById('games-display');
+const bioContainer = document.getElementById('host-bio-container');
+const bioText = document.getElementById('host-bio');
+const bioTitle = document.getElementById('host-bio-title');
 
-</div>
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Show and update the bio section
+    bioContainer.style.display = 'block';
+    bioTitle.textContent = `Meet ${btn.dataset.host}`;
+    bioText.textContent = btn.dataset.bio;
+
+    // Update game list title and load
+    document.getElementById('games-display-title').textContent = `${btn.dataset.host}'s Game List`;
+    document.getElementById('games-display-container').style.display = 'block';
+    loadGamesIntoDisplay(btn.dataset.host, btn.dataset.list);
+  });
+});
+
+
+</script>
+
