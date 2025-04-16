@@ -222,7 +222,7 @@ button:hover {
   background-color: #a94000;
 }
 
-/* --- Responsive adjustments for Geeklist --- */
+* --- Responsive adjustments for Geeklist --- */
 @media (max-width: 600px) {
   .geeklist-item {
     flex-direction: row; /* Keep side-by-side layout */
@@ -277,3 +277,5 @@ button:hover {
     padding-right: 0.5rem;
   }
 }
+
+
