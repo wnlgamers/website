@@ -316,7 +316,7 @@ Small Device Styles
 .geeklist-description { font-size: 0.95rem; line-height: 1.4; }
 
 /* Host Selector Section */
-.host-selector { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 2rem 0; }
+.host-selector { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 2rem 0; padding: 0 1rem; }
 
 .host-button { display: flex; flex-direction: column; align-items: center; border: none; background: none; cursor: pointer; transition: transform 0.2s; }
 
@@ -347,6 +347,8 @@ button:hover { background-color: #a94000; }
 @media (max-width: 600px) { .geeklist-item { flex-direction: row; /* Keep side-by-side layout */ align-items: flex-start; }
   .geeklist-thumbnail { float: left; flex: 0 0 80px; width: 80px; /* Narrower width */ height: 100px; /* Taller height for portrait crop */ margin-right: 1rem; overflow: hidden; border-radius: 4px; /* Optional: slightly rounded corners */ }
   .geeklist-description { font-size: 0.9rem; } }
-/* --- Responsive adjustments for Host Buttons --- */
-@media (max-width: 600px) { .host-button img { width: 60px; height: 60px; }
-  .host-button span { font-size: 0.85rem; } }
+@media (max-width: 480px) { .host-selector { display: flex; flex-wrap: wrap; justify-content: space-around; /* evenly space items */ gap: 0.5rem; padding: 0; }
+  .host-button { flex: 0 1 22%; max-width: 22%; text-align: center; }
+  .host-button img { width: 60px; height: 60px; }
+  .host-button span { font-size: 0.75rem; word-break: break-word; /* prevent label wrapping issues */ } }
+@media (max-width: 480px) { .inner { padding-left: 0.5rem; padding-right: 0.5rem; } }
