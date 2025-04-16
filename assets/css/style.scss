@@ -3,10 +3,25 @@
 @import "{{ site.theme }}";
 
 .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  padding: 1rem;
+  font-size: 0.9rem;
   text-align: center;
-  color: #bbb;
-  font-size: 0.85rem;
-  padding: 1em 0;
+}
+
+.footer-links .footer-item {
+  position: relative;
+  white-space: nowrap;
+}
+
+/* Add separators between items */
+.footer-links .footer-item:not(:last-child)::after {
+  content: "|";
+  margin-left: 0.75rem;
+  color:white;
 }
 
 .footer-links a {
@@ -275,5 +290,18 @@ button:hover {
   .inner {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .footer-links .footer-item:not(:last-child)::after {
+    content: "";
+    margin-left: 0.75rem;
+    color:white;
   }
 }

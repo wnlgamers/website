@@ -38,13 +38,17 @@
     <footer class="inner">
       <p class="footer-links">
         {% if site.github.is_project_page %}
-        {{ site.title | default: site.github.repository_name }} maintained by <a href="{{ site.github.owner_url }}">{{
-          site.github.owner_name }}</a>
-        &nbsp;|&nbsp;
+          <span class="footer-item">
+            {{ site.title | default: site.github.repository_name }} maintained by 
+            <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>
+          </span>
         {% endif %}
-        <a href="mailto:info@wnlgamers.uk">info@wnlgamers.uk</a>
-        &nbsp;|&nbsp;
-        <a href="https://github.com/wnlgamers/website" target="_blank" rel="noopener">GitHub</a>
+        <span class="footer-item">
+          <a href="mailto:info@wnlgamers.uk">info@wnlgamers.uk</a>
+        </span>
+        <span class="footer-item">
+          <a href="https://github.com/wnlgamers/website" target="_blank" rel="noopener">GitHub</a>
+        </span>
       </p>
     </footer>
   </div>
