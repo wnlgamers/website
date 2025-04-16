@@ -1,42 +1,39 @@
-# Contributing to WNL Gamers Website
+# Contributing to the WNL Gamers Website
 
-Thanks for your interest in contributing to the WNL Gamers website!
+Thanks for helping out! Here's how you can contribute:
 
-This project is built with [Jekyll](https://jekyllrb.com) and deployed using [Cloudflare Pages](https://pages.cloudflare.com/). All updates are automatically built and deployed based on branch activity.
+## 💡 Suggesting Updates
+- Visit the [Issues section](https://github.com/wnlgamers/website/issues).
+- Create a new issue describing your suggestion or bug report.
 
-## Workflow
-
-- **Production site**: Deployed from the `main` branch to [https://www.wnlgamers.uk](https://www.wnlgamers.uk)
-- **Staging site**: Deployed from the `staging` branch to [https://staging.wnlgamers.uk](https://staging.wnlgamers.uk)
-
----
-
-## 🧭 Contribution Process
-
-To ensure changes are reviewed and tested before going live, **please open pull requests against the `staging` branch**, not `main`.
-
-### ✅ Steps to Contribute
-
-1. **Fork** this repository, or create a feature branch if you're a team member.
-2. **Create a branch** for your changes:
+## 🛠️ Making Changes
+1. Make sure your main branch is up to date:
+   ```bash
+   git checkout main
+   git pull origin main
    ```
-   git checkout -b feature/my-awesome-update
+
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/your-change-name
    ```
-3. **Make your changes** and **test locally**:
+
+3. Make your changes and commit:
+   ```bash
+   git add .
+   git commit -m "Your change description"
+   git push -u origin feature/your-change-name
    ```
-   bundle install
-   bundle exec jekyll serve
-   ```
-   Visit `http://localhost:4000` to preview the site.
-4. **Open a pull request** into the `staging` branch with a clear description.
-5. The team will review your changes and, if ready, merge them into `main`.
 
----
+4. Create a pull request into `main` on GitHub.
 
-## ✨ Tips
+## 👀 Previewing Your Work
+All branches will generate a live preview on Cloudflare Pages. Look for the link in the pull request view under “Deployments”.
 
-- Keep pull requests focused — one clear improvement per PR is ideal.
-- If you're unsure about anything, open a draft PR or ask in the repo's Discussions.
-- Don’t commit the `_site/` folder — it's automatically generated and excluded.
+## 📦 Important Notes
+- Do **not** commit the `_site/` directory.
+- Avoid changes to protected files like `.gitignore`, or GitHub Actions unless explicitly required.
 
-Thanks for helping us make WNL Gamers even better!
+For more background, visit the [Wiki](https://github.com/wnlgamers/website/wiki/Site-Configuration).
+
+Happy contributing! 🎲

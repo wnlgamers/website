@@ -112,10 +112,10 @@ We welcome contributions! See our [CONTRIBUTING](CONTRIBUTING.md) for details on
 
 This site is built using [Jekyll](https://jekyllrb.com) and deployed via [Cloudflare Pages](https://pages.cloudflare.com/).
 
-- **Live site:** [https://www.wnlgamers.uk](https://www.wnlgamers.uk)
-- **Staging preview (staging branch):** [https://staging.wnlgamers.uk](https://staging.wnlgamers.uk)
+All branches will be automatically built on cloudflare but two named branches also resolve to specific locations:
 
-Deployment is automated via commits to the `main` and `staging` branches.
+- **Live site:** [https://wnlgamers.uk](https://wnlgamers.uk)
+- **Staging preview (staging branch):** [https://staging.wnlgamers.uk](https://staging.wnlgamers.uk)
 
 ## License
 
