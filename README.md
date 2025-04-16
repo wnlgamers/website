@@ -1,126 +1,46 @@
 # WNL Gamers Website
 
-A community-driven website for the Wootton board game group, built using Jekyll and hosted on GitHub Pages. This project provides a hub for board game enthusiasts with curated content, interactive lists, and event details.
+A friendly website for the Wootton New Life Gamers board game club.
 
-## Features
-- **Dynamic Geeklist Integration:** Displays games with thumbnails, descriptions, and links.
-- **Responsive & Themed Design:** Built with Jekyll using a custom remote theme.
-- **Universal Navigation:** Consistent navigation across the site.
-- **Community Driven:** Easy for anyone to contribute.
+This site is designed to showcase our events, table hosts, and games we play — and it's built to grow with the community.
 
-## Getting Started
+---
 
-### Prerequisites
+## 🕹️ What’s This?
 
-Before you begin, please ensure you have the following installed:
+- A simple, static website powered by **Jekyll**.
+- Hosted on **Cloudflare Pages** with **live previews** for every update.
+- Contributions are welcome — whether it’s editing bios, adding games, or tweaking the layout.
 
-- **Git:** For version control.  
-  Download from [git-scm.com](https://git-scm.com/).
+---
 
-- **Ruby:** Required to run Jekyll.  
-  - **Windows:** Download from [rubyinstaller.org](https://rubyinstaller.org/).  
-  - **macOS:** Often pre-installed; you can also use Homebrew (`brew install ruby`).  
-  - **Linux:** Install via your package manager (e.g., `sudo apt install ruby-full`).
+## 🚀 How to Contribute
 
-- **Bundler:** Ruby gem for managing dependencies. Install it with:
-```bash
-gem install bundler
-```
+See the [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed instructions.
 
-- **Jekyll:** The static site generator. Install it by running:
-```bash
-gem install jekyll
-```
+In short:
+- **Small change?** You can edit files right on GitHub (like updating your bio).
+- **Bigger changes?** Use a feature branch and open a pull request.
 
-*Tip:* If you’re new to these tools, check out their documentation:
-- [Git Documentation](https://git-scm.com/doc)
-- [Ruby Quickstart](https://www.ruby-lang.org/en/documentation/quickstart/)
-- [Jekyll Getting Started](https://jekyllrb.com/docs/installation/)
+You’ll get a live preview link once you create a pull request!
 
-### Setting Up Your Local Development Environment
+---
 
-There are two common approaches:
+## 🔧 Tech Stack
 
-#### Option 1: Using the Command Line (General Method)
+- **Jekyll** (Static site generator)
+- **Liquid** templating
+- **YAML** data files for content like bios and navigation
+- **JavaScript** for interactive game list loading from BoardGameGeek
 
-1. **Clone the Repository:**
-   Open your terminal and run:
-```bash
-git clone https://github.com/wnlgamers/website.git
-cd website
-```
+---
 
-2. **Install Dependencies:**
-   In the project directory, run:
-```bash
-bundle install
-```
+## 🔗 Links
 
-3. **Build and Serve the Site Locally:**
-   Run:
-```bash
-bundle exec jekyll serve
-```
-   The site will be generated and served at [http://localhost:4000](http://localhost:4000).
+- 🌐 Main site: [wnlgamers.uk](https://wnlgamers.uk)
+- 📫 Email: [info@wnlgamers.uk](mailto:info@wnlgamers.uk)
+- 🧠 Wiki: [Site Configuration](https://github.com/wnlgamers/website/wiki/Site-Configuration)
 
-4. **View Your Site:**
-   Open your browser and navigate to [http://localhost:4000](http://localhost:4000). Jekyll will automatically rebuild the site when you save changes.
+---
 
-#### Option 2: Using Visual Studio Code
-
-VS Code offers a user-friendly environment with built-in Markdown preview and an integrated terminal.
-
-1. **Download and Install VS Code:**  
-   Get it from [code.visualstudio.com](https://code.visualstudio.com/).
-
-2. **Clone the Repository via VS Code:**
-   - Open VS Code.
-   - Go to **View > Terminal** to open the integrated terminal.
-   - Run:
-```bash
-git clone https://github.com/wnlgamers/website.git
-cd website
-```
-
-3. **Install Recommended Extensions:**
-   - **Ruby Extension:** For Ruby syntax highlighting.
-   - **Markdown All in One:** For enhanced Markdown support.
-
-4. **Run Jekyll Within VS Code:**
-   - In the integrated terminal, run:
-```bash
-bundle exec jekyll serve
-```
-   - Preview your site by opening [http://localhost:4000](http://localhost:4000) in your browser or by using an extension that provides an in-editor preview.
-
-### Additional Tips
-
-- **Using Multiple Config Files:**  
-  If you need separate configurations for local development and production, you can create an additional configuration file (e.g., `_config_dev.yml`) with local settings (such as an empty `baseurl`) and run:
-```bash
-bundle exec jekyll serve --config _config.yml,_config_dev.yml
-```
-
-- **Learning Resources:**  
-  Explore tutorials on Git, Jekyll, and VS Code to become more comfortable with these tools.
-
-## Contributing
-
-We welcome contributions! See our [CONTRIBUTING](CONTRIBUTING.md) for details on how to submit pull requests and join the development process.
-
-## Deployment
-
-This site is built using [Jekyll](https://jekyllrb.com) and deployed via [Cloudflare Pages](https://pages.cloudflare.com/).
-
-All branches will be automatically built on cloudflare but two named branches also resolve to specific locations:
-
-- **Live site:** [https://wnlgamers.uk](https://wnlgamers.uk)
-- **Staging preview (staging branch):** [https://staging.wnlgamers.uk](https://staging.wnlgamers.uk)
-
-## License
-
-This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For questions or suggestions, please email [info@wnlgamers.uk](mailto:info@wnlgamers.uk) or open an issue in the repository.
+For developers: to run the site locally or dig deeper, check the **[Advanced Contributor Guide](https://github.com/wnlgamers/website/wiki/Advanced-Contributor-Setup)**.
