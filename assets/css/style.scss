@@ -73,8 +73,7 @@
   /* White text for contrast */
   font-weight: bold;
 }
-
-/* Geek LIst formatting */
+/* Geek List Container */
 #games-display-container {
   margin-top: 2rem;
   padding: 1rem;
@@ -82,73 +81,52 @@
   border-top: 2px solid #ccc;
 }
 
+/* Section Title */
 #games-display-title {
   margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
+/* Individual Game Entry */
 .geeklist-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
   border-bottom: 1px solid #ccc;
   padding: 1rem 0;
 }
 
-.geeklist-item h3 {
-  margin: 0 0 0.5rem 0;
-}
-
-.geeklist-item h3 a {
-  color: #000;
-  /* Set game title links to black */
-  text-decoration: none;
-  /* Optional: remove underline if desired */
-}
-
-.geeklist-item h3 a:hover {
-  color: #333;
-  /* A slightly different color on hover, if you like */
-}
-
-.geeklist-description {
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-/* Container for each geeklist item */
-.geeklist-item {
-  overflow: auto;
-  /* Ensure proper float handling */
-  padding: 1rem 0;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 1rem;
-}
-
-/* Thumbnail container: fixed size and floats left */
+/* Thumbnail Image Wrapper */
 .geeklist-thumbnail {
-  float: left;
-  width: 150px;
-  /* Adjust as needed */
+  flex: 0 0 150px;
   height: 150px;
-  /* Adjust as needed */
-  margin-right: 1rem;
-  /* Space between the image and text */
   overflow: hidden;
 }
 
-/* Image fills the thumbnail container */
 .geeklist-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Info container: contains title and description */
+/* Game Info Block */
 .geeklist-info {
-  overflow: hidden;
-  /* Clears the float */
+  flex: 1 1 0;
 }
 
-/* Optional: additional styling for the title and description */
 .geeklist-info h3 {
-  margin-top: 0;
+  margin: 0 0 0.5rem 0;
+}
+
+.geeklist-info h3 a {
+  color: #000;
+  text-decoration: none;
+}
+
+.geeklist-info h3 a:hover {
+  color: #333;
 }
 
 .geeklist-description {
@@ -156,35 +134,79 @@
   line-height: 1.4;
 }
 
-
-
-/* Table host styling */
-.host-grid {
+/* Host Selector Section */
+.host-selector {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
   justify-content: center;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin: 2rem 0;
 }
 
-.host-card {
-  flex: 1 1 200px;
-  max-width: 250px;
-  text-align: center;
-  padding: 1rem;
-  background-color: #f6f6f6;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.host-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.host-image {
-  width: 120px;
-  height: 120px;
+.host-button img {
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 50%;
+  border: 2px solid #ccc;
+  transition: border-color 0.3s;
+}
+
+.host-button span {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.host-button:hover img,
+.host-button.active img {
+  border-color: #D35400;
+}
+
+/* Games List Display Section */
+.games-list-section {
+  margin: 2rem auto;
+  max-width: 700px;
+}
+
+#host-bio-title,
+#games-display-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+#host-bio {
   margin-bottom: 1rem;
 }
 
+/* Wrapper for Host Bio and Game List */
+.host-details-box {
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.host-details-box h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Optional: General button style (if still in use) */
 button {
   margin-top: 0.5rem;
   padding: 8px 14px;
@@ -197,4 +219,38 @@ button {
 
 button:hover {
   background-color: #a94000;
+}
+
+/* --- Responsive adjustments for Geeklist --- */
+@media (max-width: 600px) {
+  .geeklist-item {
+    flex-direction: row; /* Keep side-by-side layout */
+    align-items: flex-start;
+  }
+
+  .geeklist-thumbnail {
+    float: left;
+    flex: 0 0 80px;
+    width: 80px; /* Narrower width */
+    height: 100px; /* Taller height for portrait crop */
+    margin-right: 1rem;
+    overflow: hidden;
+    border-radius: 4px; /* Optional: slightly rounded corners */
+  }
+
+  .geeklist-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Responsive adjustments for Host Buttons --- */
+@media (max-width: 600px) {
+  .host-button img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .host-button span {
+    font-size: 0.85rem;
+  }
 }

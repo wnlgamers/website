@@ -92,7 +92,7 @@ async function loadGamesIntoDisplay(hostName, geeklistId) {
 // Append the footer link to the output
 output += `
 <div class="geeklist-footer" style="text-align: center; margin-top: 1rem;">
-  <a href="https://boardgamegeek.com/geeklist/355850" target="_blank">View Full Geeklist on BoardGameGeek</a>
+  <a href="https://boardgamegeek.com/geeklist/${geeklistId}" target="_blank">View Full Geeklist on BoardGameGeek</a>
 </div>
 `;
 
