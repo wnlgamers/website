@@ -1,13 +1,13 @@
 // Function to convert BBCode to HTML
 function convertBBCodeToHTML(bggText) {
   bggText = bggText.replace(/\[b\]/gi, "<strong>")
-                   .replace(/\[\/b\]/gi, "</strong>");
+    .replace(/\[\/b\]/gi, "</strong>");
   bggText = bggText.replace(/\[url=(.*?)\](.*?)\[\/url\]/gi, '<a href="$1" target="_blank">$2</a>');
   bggText = bggText.replace(/(♟️)/g, '<br>$1')
-                   .replace(/(🎞️)/g, '<br>$1');
+    .replace(/(🎞️)/g, '<br>$1');
   bggText = bggText.replace(/(<strong>Players:)/gi, '<br>$1')
-                   .replace(/(<strong>Complexity:)/gi, '<br>$1')
-                   .replace(/(<strong>Play Time:)/gi, '<br>$1');
+    .replace(/(<strong>Complexity:)/gi, '<br>$1')
+    .replace(/(<strong>Play Time:)/gi, '<br>$1');
   return bggText;
 }
 
@@ -40,6 +40,13 @@ async function loadGamesIntoDisplay(hostName, geeklistId) {
   container.innerHTML = '<p>Loading games...</p>';
   title.textContent = `${hostName}'s Game List`;
 
+  // if no geeklist id is provided, show a message and return
+  if (!geeklistId) {
+    container.innerHTML = '<p>No gameslist yet but watch this space...</p>';
+    return;
+  }
+
+  // Construct the URL for the Geeklist XML API
   const geeklistURL = `https://boardgamegeek.com/xmlapi/geeklist/${geeklistId}`;
 
   try {
@@ -54,7 +61,7 @@ async function loadGamesIntoDisplay(hostName, geeklistId) {
     let output = "";
 
     // Loop through each geeklist item
-    Array.from(items).forEach(function(item) {
+    Array.from(items).forEach(function (item) {
       // Get the game title from the "objectname" attribute
       const objectid = item.getAttribute("objectid");
       const objectname = item.getAttribute("objectname") || "Untitled";
@@ -89,18 +96,18 @@ async function loadGamesIntoDisplay(hostName, geeklistId) {
       `;
     });
 
-// Append the footer link to the output
-output += `
+    // Append the footer link to the output
+    output += `
 <div class="geeklist-footer" style="text-align: center; margin-top: 1rem;">
   <a href="https://boardgamegeek.com/geeklist/${geeklistId}" target="_blank">View Full Geeklist on BoardGameGeek</a>
 </div>
 `;
 
-// Then update the container HTML
-container.innerHTML = output;
+    // Then update the container HTML
+    container.innerHTML = output;
 
     // Now, loop through the items again to fetch and set each thumbnail image
-    Array.from(items).forEach(function(item) {
+    Array.from(items).forEach(function (item) {
       const objectid = item.getAttribute("objectid");
       const imageId = "thumbnail-" + objectid;
       fetchThumbnail(objectid, imageId);
@@ -111,4 +118,5 @@ container.innerHTML = output;
     container.innerHTML =
       "<p>Error loading Geeklist data.</p>";
   }
+
 };
