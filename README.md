@@ -43,4 +43,4 @@ You’ll get a live preview link once you create a pull request!
 
 ---
 
-For developers: to run the site locally or dig deeper, check the **[Advanced Contributor Guide](https://github.com/wnlgamers/website/wiki/Advanced-Contributor-Setup)**.
+For developers: to run the site locally or dig deeper, check the **[Advanced Contributor Guide](https://github.com/wnlgamers/website/wiki/Advanced-Workflow-for-Contributing)**.
