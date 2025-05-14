@@ -83,6 +83,7 @@ https://feature-test-deployment.website-a8e.pages.dev/
 ```
 
 When you open a pull request, the Cloudflare bot will also comment with a link to the preview.
+![image](https://github.com/user-attachments/assets/d6acc17a-a421-422c-8193-abf9be09a3c8)
 
 ---
 
