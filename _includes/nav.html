@@ -3,8 +3,12 @@
   <ul>
     {% assign nav_items = site.data.navigation %}
     {% for item in nav_items %}
-      <li{% if page.url == item.url %} class="active"{% endif %}>
-        <a href="{{ item.url }}">{{ item.name }}</a>
+      {% assign is_active = false %}
+      {% if page.path == item.path %}
+        {% assign is_active = true %}
+      {% endif %}
+      <li{% if is_active %} class="active"{% endif %}>
+        <a href="{{ site.baseurl }}{{ item.url }}">{{ item.name }}</a>
       </li>
     {% endfor %}
   </ul>

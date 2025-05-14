@@ -13,7 +13,7 @@ permalink: /hosts
       data-host="{{ host.name }}" 
       data-list="{{ host.geeklist_id }}"
       data-bio="{{ host.bio | escape }}">
-      <img src="{{ host.image }}" alt="{{ host.name }}">
+      <img src="{{ host.image | relative_url }}" alt="{{ host.name }}">
       <span>{{ host.name }}</span>
     </button>
   {% endfor %}
@@ -29,7 +29,10 @@ permalink: /hosts
   <div id="games-display" class="games-list"></div>
 </div>
 
-<script src="{{ '/assets/gamelist.js' | relative_url }}"></script>
+<script>
+{% assign placeholder_img = site.baseurl | append: "/assets/images/placeholder-thumbnail.png" %}
+{% include gamelist.js image=placeholder_img %}
+</script>
 <script>
 const buttons = document.querySelectorAll('.host-button');
 const gamesContainer = document.getElementById('games-display-container');
