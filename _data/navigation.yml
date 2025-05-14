@@ -1,8 +1,12 @@
 - name: Home
+  path: _pages/index.md
   url: /
-- name: Hosts & Games
+- name: Hosts
+  path: _pages/hosts.md
   url: /hosts
 - name: About
+  path: _pages/about.md
   url: /about
 - name: Contact
+  path: _pages/contact.md
   url: /contact

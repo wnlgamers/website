@@ -1,3 +1,5 @@
+const imgUrl = "{{ include.image }}";
+
 // Function to convert BBCode to HTML
 function convertBBCodeToHTML(bggText) {
   bggText = bggText.replace(/\[b\]/gi, "<strong>")
@@ -29,7 +31,7 @@ async function fetchAllThumbnails(items) {
 // Function to fetch thumbnail from BGG "thing" endpoint with fallback
 async function fetchThumbnail(objectid, imageId) {
   const thingURL = "https://boardgamegeek.com/xmlapi2/thing?id=" + objectid;
-  const fallbackImage = "/assets/images/placeholder-thumbnail.png"; // Update this path to match your site
+  const fallbackImage = imgUrl; // Update this path to match your site
 
   try {
     const response = await fetch(thingURL);
@@ -111,7 +113,7 @@ async function loadGamesIntoDisplay(hostName, geeklistId) {
         <div class="geeklist-item" style="border-bottom:1px solid #ccc; padding:1rem 0; margin-bottom:1rem;">
           <div class="geeklist-thumbnail" style="margin-bottom: 0.5rem;">
             <!-- Thumbnail image. The src is empty initially, to be filled in asynchronously -->
-            <img id="${imageId}" src="/assets/images/placeholder-thumbnail.png"" alt="Thumbnail for ${objectname}" style="max-width:150px;">
+            <img id="${imageId}" src="${imgUrl}" alt="Thumbnail for ${objectname}" style="max-width:150px;">
           </div>
            <div class="geeklist-info">
           <h3>
