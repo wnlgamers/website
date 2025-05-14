@@ -11,20 +11,50 @@ function convertBBCodeToHTML(bggText) {
   return bggText;
 }
 
-// Function to fetch thumbnail from BGG "thing" endpoint
+// Function to add a delay
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function fetchAllThumbnails(items) {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const objectid = item.getAttribute("objectid");
+    const imageId = "thumbnail-" + objectid;
+    await delay(10); // Add a 500ms delay between each fetch
+    fetchThumbnail(objectid, imageId);
+  }
+}
+
+// Function to fetch thumbnail from BGG "thing" endpoint with fallback
 async function fetchThumbnail(objectid, imageId) {
   const thingURL = "https://boardgamegeek.com/xmlapi2/thing?id=" + objectid;
+  const fallbackImage = "/assets/images/placeholder-thumbnail.png"; // Update this path to match your site
+
   try {
     const response = await fetch(thingURL);
     const xmlText = await response.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlText, "application/xml");
     const thumbnailElement = xmlDoc.querySelector("thumbnail");
-    if (thumbnailElement) {
-      document.getElementById(imageId).src = thumbnailElement.textContent;
+
+    const img = document.getElementById(imageId);
+
+    if (thumbnailElement && thumbnailElement.textContent) {
+      img.src = thumbnailElement.textContent;
+    } else {
+      img.src = fallbackImage;
     }
+
+    // Fallback if image fails to load
+    img.onerror = function () {
+      this.onerror = null; // prevent loop if fallback image fails
+      this.src = fallbackImage;
+    };
   } catch (error) {
     console.error("Error fetching thumbnail for objectid " + objectid + ":", error);
+    const img = document.getElementById(imageId);
+    img.src = fallbackImage;
   }
 }
 
@@ -81,7 +111,7 @@ async function loadGamesIntoDisplay(hostName, geeklistId) {
         <div class="geeklist-item" style="border-bottom:1px solid #ccc; padding:1rem 0; margin-bottom:1rem;">
           <div class="geeklist-thumbnail" style="margin-bottom: 0.5rem;">
             <!-- Thumbnail image. The src is empty initially, to be filled in asynchronously -->
-            <img id="${imageId}" src="" alt="Thumbnail for ${objectname}" style="max-width:150px;">
+            <img id="${imageId}" src="/assets/images/placeholder-thumbnail.png"" alt="Thumbnail for ${objectname}" style="max-width:150px;">
           </div>
            <div class="geeklist-info">
           <h3>
@@ -107,11 +137,7 @@ async function loadGamesIntoDisplay(hostName, geeklistId) {
     container.innerHTML = output;
 
     // Now, loop through the items again to fetch and set each thumbnail image
-    Array.from(items).forEach(function (item) {
-      const objectid = item.getAttribute("objectid");
-      const imageId = "thumbnail-" + objectid;
-      fetchThumbnail(objectid, imageId);
-    });
+    fetchAllThumbnails(Array.from(items));
 
   } catch (error) {
     console.error("Error loading Geeklist:", error);

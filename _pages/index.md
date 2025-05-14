@@ -16,4 +16,4 @@ We usually meet on the second Saturday evening of each month. See the flyer belo
 
 ---
 
-![Family Game Night Flyer](./assets/flyer.png)
+![Family Game Night Flyer](./assets/images/flyer.png)
