@@ -1,7 +1,7 @@
 title: WNL Gamers
 description: Board games in Wootton, Bedford
 author: WNL Gamers
-baseurl: "/website" # leave this empty for a project site
+baseurl: "" # leave this empty for a project site
 url: "https://wnlgamers.uk" 
 # You can override colours in your custom CSS below
 # theme: midnight
