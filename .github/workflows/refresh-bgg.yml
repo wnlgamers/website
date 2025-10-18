@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   refresh:
@@ -115,16 +114,15 @@ jobs:
             run();
           '
 
-      - name: Create/update PR with refreshed data
-        uses: peter-evans/create-pull-request@v6
-        with:
-          branch: auto/bgg-cache
-          commit-message: "chore: refresh BGG geeklist cache"
-          title: "chore: refresh BGG geeklist cache"
-          body: |
-            Automated refresh of cached BoardGameGeek geeklist JSON/XML.
-            - Source IDs read from `_data/hosts.yml`
-            - Outputs in `assets/data/`
-          labels: automated
-          delete-branch: true
+      - name: Commit changes (only if updated)
+      run: |
+      if [ -n "$(git status --porcelain assets/data/)" ]; then
+        git config user.name "bgg-bot"
+        git config user.email "actions@users.noreply.github.com"
+        git add assets/data/
+        git commit -m "chore: refresh BGG geeklist cache"
+        git push
+      else
+        echo "No changes to commit."
+      fi
 
