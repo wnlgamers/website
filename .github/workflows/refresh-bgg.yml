@@ -29,7 +29,7 @@ jobs:
       - name: Extract geeklist IDs
         id: extract
         run: |
-          node -e '
+          node --input-type=module -e '
             import fs from "node:fs";
             import yaml from "js-yaml";
             const hosts = yaml.load(fs.readFileSync("_data/hosts.yml", "utf8")) || [];
@@ -73,7 +73,7 @@ jobs:
       # Convert each XML to a tidy JSON the front-end can consume
       - name: Convert XML → JSON
         run: |
-          node -e '
+          node --input-type=module -e '
             import fs from "node:fs/promises";
             import { parseStringPromise as p } from "xml2js";
 
@@ -115,14 +115,13 @@ jobs:
           '
 
       - name: Commit changes (only if updated)
-      run: |
-      if [ -n "$(git status --porcelain assets/data/)" ]; then
-        git config user.name "bgg-bot"
-        git config user.email "actions@users.noreply.github.com"
-        git add assets/data/
-        git commit -m "chore: refresh BGG geeklist cache"
-        git push
-      else
-        echo "No changes to commit."
-      fi
-
+        run: |
+          if [ -n "$(git status --porcelain assets/data/)" ]; then
+            git config user.name "bgg-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add assets/data/
+            git commit -m "chore: refresh BGG geeklist cache"
+            git push
+          else
+            echo "No changes to commit."
+          fi
