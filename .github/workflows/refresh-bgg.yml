@@ -1,0 +1,127 @@
+name: Refresh BGG cache (3-hourly)
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"   # every 3 hours
+  workflow_dispatch: {}      # allow manual runs
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install Node + small libs to read YAML and convert XML→JSON
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install tooling (js-yaml, xml2js)
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install js-yaml@4 xml2js@0.6 --silent
+
+      # Extract unique, non-empty geeklist IDs from _data/hosts.yml
+      - name: Extract geeklist IDs
+        id: extract
+        run: |
+          node -e '
+            import fs from "node:fs";
+            import yaml from "js-yaml";
+            const hosts = yaml.load(fs.readFileSync("_data/hosts.yml", "utf8")) || [];
+            const ids = [...new Set(
+              hosts
+                .map(h => (h?.geeklist_id ?? "").toString().trim())
+                .filter(v => v && /^\d+$/.test(v))
+            )];
+            console.log("IDs:", ids.join(" "));
+            // Expose to later steps
+            console.log(`ids=${ids.join(" ")}`);' | tee ids.log
+          echo "IDS=$(tail -n1 ids.log | sed 's/^ids=//')" >> $GITHUB_ENV
+
+      # Fetch each geeklist XML with the bearer token
+      - name: Fetch geeklists (XML)
+        env:
+          BGG_BEARER_TOKEN: ${{ secrets.BGG_BEARER_TOKEN }}
+        run: |
+          mkdir -p assets/data
+          if [ -z "${IDS}" ]; then
+            echo "No geeklist IDs found in _data/hosts.yml"; exit 0
+          fi
+
+          for id in ${IDS}; do
+            echo "Fetching geeklist ${id}..."
+            curl -sSL "https://boardgamegeek.com/xmlapi2/geeklist/${id}" \
+              -H "Authorization: Bearer ${BGG_BEARER_TOKEN}" \
+              -H "Accept: application/xml" \
+              -o "assets/data/geeklist-${id}.xml.tmp"
+
+            if [ ! -s "assets/data/geeklist-${id}.xml.tmp" ]; then
+              echo "Download failed or empty for ${id}"; exit 1
+            fi
+
+            mv "assets/data/geeklist-${id}.xml.tmp" "assets/data/geeklist-${id}.xml"
+
+            # Be polite if you later extend this to multiple upstream calls
+            sleep 1
+          done
+
+      # Convert each XML to a tidy JSON the front-end can consume
+      - name: Convert XML → JSON
+        run: |
+          node -e '
+            import fs from "node:fs/promises";
+            import { parseStringPromise as p } from "xml2js";
+
+            const ids = (process.env.IDS || "").trim().split(/\s+/).filter(Boolean);
+
+            const convert = async (id) => {
+              const xml = await fs.readFile(`assets/data/geeklist-${id}.xml`, "utf8");
+              const parsed = await p(xml, { explicitArray:false, mergeAttrs:true });
+              const gl = parsed.geeklist || {};
+              let items = gl.item || [];
+              if (!Array.isArray(items)) items = [items];
+
+              const out = {
+                id: gl.id,
+                title: gl.title,
+                username: gl.username,
+                postdate: gl.postdate,
+                items: items.map(i => ({
+                  id: i.id,
+                  objectid: i.objectid,
+                  objecttype: i.objecttype,
+                  subtype: i.subtype,
+                  username: i.username,
+                  postdate: i.postdate,
+                  editdate: i.editdate,
+                  likes: i.thumbs,
+                  comments: i.numcomments,
+                  name: i.objectname,
+                  body: i.body
+                }))
+              };
+
+              await fs.writeFile(`assets/data/geeklist-${id}.json`, JSON.stringify(out, null, 2), "utf8");
+              console.log("Wrote assets/data/geeklist-" + id + ".json");
+            };
+
+            const run = async () => { for (const id of ids) await convert(id); };
+            run();
+          '
+
+      - name: Commit changes (only if updated)
+        run: |
+          if [ -n "$(git status --porcelain assets/data/)" ]; then
+            git config user.name "bgg-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add assets/data/
+            git commit -m "chore: refresh BGG geeklist cache from BGG"
+            git push
+          else
+            echo "No changes to commit."
+          fi
