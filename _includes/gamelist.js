@@ -1,5 +1,8 @@
 const imgUrl = "{{ include.image }}"; // fallback image (host photo)
 
+// Simple check that the script actually loaded
+console.log("gameslist.js loaded, imgUrl =", imgUrl);
+
 // Convert BBCode-ish content to HTML
 function convertBBCodeToHTML(bggText = "") {
   return bggText
@@ -12,38 +15,57 @@ function convertBBCodeToHTML(bggText = "") {
     .replace(/(<strong>Play Time:)/gi, '<br>$1');
 }
 
-export async function loadGamesIntoDisplay(hostName, geeklistId) {
-  const container  = document.getElementById('games-display');
-  const title      = document.getElementById('games-display-title');
-  const displayBox = document.getElementById('games-display-container');
+async function loadGamesIntoDisplay(hostName, geeklistId) {
+  console.log("loadGamesIntoDisplay called:", { hostName, geeklistId });
 
-  displayBox.style.display = 'block';
-  container.innerHTML = '<p>Loading games...</p>';
+  const container  = document.getElementById("games-display");
+  const title      = document.getElementById("games-display-title");
+  const displayBox = document.getElementById("games-display-container");
+
+  if (!container || !title || !displayBox) {
+    console.warn("One or more display elements not found");
+    return;
+  }
+
+  displayBox.style.display = "block";
+  container.innerHTML = "<p>Loading games...</p>";
   title.textContent = `${hostName}'s Game List`;
 
   if (!geeklistId) {
-    container.innerHTML = '<p>No games list yet — watch this space…</p>';
+    console.log("No geeklistId provided");
+    container.innerHTML = "<p>No games list yet — watch this space…</p>";
     return;
   }
 
   const url = `/assets/data/geeklist-${geeklistId}.json`;
+  console.log("Fetching geeklist JSON from:", url);
 
   try {
-    const res = await fetch(`${url}?v=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`Failed to load ${url}`);
+    const res = await fetch(`${url}?v=${Date.now()}`, { cache: "no-store" });
+    console.log("Fetch response:", res.status, res.statusText);
+    if (!res.ok) throw new Error(`Failed to load ${url} – status ${res.status}`);
+
     const data = await res.json();
+    console.log("Geeklist data loaded:", data);
 
     const items = Array.isArray(data.items) ? data.items : [];
-    let html = '';
+    console.log(`Number of items in geeklist ${geeklistId}:`, items.length);
+
+    if (items.length === 0) {
+      container.innerHTML = "<p>No games found in this list yet.</p>";
+      return;
+    }
+
+    let html = "";
 
     for (const it of items) {
       const objectid   = it.objectid;
-      const name       = it.name || 'Untitled';
+      const name       = it.name || "Untitled";
       const bggLink    = `https://boardgamegeek.com/boardgame/${objectid}`;
       const bodyHTML   = convertBBCodeToHTML(it.body || "");
       const likes      = it.likes ?? 0;
       const comments   = it.comments ?? 0;
-      const thumbSrc   = it.thumbnail || imgUrl; // will use fallback unless we populate thumbnails in JSON
+      const thumbSrc   = it.thumbnail || imgUrl;
 
       html += `
         <div class="geeklist-item" style="border-bottom:1px solid #ccc; padding:1rem 0; margin-bottom:1rem;">
@@ -75,7 +97,10 @@ export async function loadGamesIntoDisplay(hostName, geeklistId) {
 
     container.innerHTML = html;
   } catch (err) {
-    console.error(err);
-    container.innerHTML = '<p>Sorry — couldn’t load this games list.</p>';
+    console.error("Error in loadGamesIntoDisplay:", err);
+    container.innerHTML = "<p>Sorry — couldn’t load this games list.</p>";
   }
 }
+
+// expose globally so inline onclick etc. can see it
+window.loadGamesIntoDisplay = loadGamesIntoDisplay;
