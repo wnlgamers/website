@@ -1,7 +1,8 @@
-const imgUrl = "{{ include.image }}"; // fallback image (host photo)
+// Host image from the include – currently unused, but kept
+// in case you want to show a single host photo above the list later.
+const imgUrl = "{{ include.image }}";
 
-// Simple check that the script actually loaded
-console.log("gameslist.js loaded, imgUrl =", imgUrl);
+console.log("gameslist.js loaded (no per-game images), imgUrl =", imgUrl);
 
 // Convert BBCode-ish content to HTML
 function convertBBCodeToHTML(bggText = "") {
@@ -59,19 +60,15 @@ async function loadGamesIntoDisplay(hostName, geeklistId) {
     let html = "";
 
     for (const it of items) {
-      const objectid   = it.objectid;
-      const name       = it.name || "Untitled";
-      const bggLink    = `https://boardgamegeek.com/boardgame/${objectid}`;
-      const bodyHTML   = convertBBCodeToHTML(it.body || "");
-      const likes      = it.likes ?? 0;
-      const comments   = it.comments ?? 0;
-      const thumbSrc   = it.thumbnail || imgUrl;
+      const objectid = it.objectid;
+      const name     = it.name || "Untitled";
+      const bggLink  = `https://boardgamegeek.com/boardgame/${objectid}`;
+      const bodyHTML = convertBBCodeToHTML(it.body || "");
+      const likes    = it.likes ?? 0;
+      const comments = it.comments ?? 0;
 
       html += `
         <div class="geeklist-item" style="border-bottom:1px solid #ccc; padding:1rem 0; margin-bottom:1rem;">
-          <div class="geeklist-thumbnail" style="margin-bottom:0.5rem;">
-            <img src="${thumbSrc}" alt="Thumbnail for ${name}" style="max-width:150px;">
-          </div>
           <div class="geeklist-info">
             <h3>
               <a href="${bggLink}" target="_blank" rel="noopener">${name}</a>
